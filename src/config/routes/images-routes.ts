@@ -8,5 +8,5 @@ const upload = multer({ dest: "assets/images/uploads/" });
 //Const-vars
 export const imagesRouter = Router();
 
-imagesRouter.post("/", upload.single("avatar"), uploadImageController);
+imagesRouter.post("/", upload.single("img"), uploadImageController);
 
