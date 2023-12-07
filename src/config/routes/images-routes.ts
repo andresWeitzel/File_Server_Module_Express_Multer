@@ -10,3 +10,5 @@ const upload = multer({ dest: IMG_PATH_NAME_BASE_URL });
 export const imagesRouter = Router();
 
 imagesRouter.post("/", upload.single("img"), uploadImageController);
+
+//Add router
