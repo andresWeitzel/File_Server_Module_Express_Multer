@@ -1,8 +1,17 @@
 //External
-import { Request, Response } from "express";
+import { Response } from "express";
 import "dotenv/config";
 //Helpers
 import { renameFile } from "../../helpers/files/renameFile";
+//Enums
+import { statusCode } from "../../enums/http/status-code";
+//Const
+const OK_CODE = statusCode.OK;
+const BAD_REQUEST_CODE = statusCode.BAD_REQUEST;
+const BAD_REQUEST_MESSAGE = "Bad request, could not get image";
+const BAD_REQUEST_ERROR_PROCESS_MESSAGE =
+  "Bad request, image has not been processed, but it has been stored";
+const ERROR_DETAILS = "ERROR in uploadImageController() function.";
 //Vars
 let file: any;
 let renameFileResult: any;
@@ -19,15 +28,17 @@ export const uploadImageController = async (req: any, res: Response) => {
   try {
     file = req.file;
     if (file == null || file == undefined) {
-      return res.status(400).send("Bad request, could not get image");
+      return res.status(BAD_REQUEST_CODE).send(BAD_REQUEST_MESSAGE);
     }
     renameFileResult = await renameFile(file);
     if (renameFileResult == null || renameFileResult == undefined) {
-      return res.status(400).send("Bad request, image has not been processed, but it has been stored");
+      return res
+        .status(BAD_REQUEST_CODE)
+        .send(BAD_REQUEST_ERROR_PROCESS_MESSAGE);
     }
-    return res.status(200).send(file);
+    return res.status(OK_CODE).send(file);
   } catch (error) {
-    msgResponse = "ERROR in uploadImageController() function.";
+    msgResponse = ERROR_DETAILS;
     msgLog = msgResponse + `Caused by ${error}`;
     console.log(msgLog);
   }
