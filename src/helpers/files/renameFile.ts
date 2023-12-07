@@ -1,10 +1,11 @@
 //External
-import * as fs from 'fs';
+import * as fs from "fs";
 import "dotenv/config";
+//Env vars
+const IMG_PATH_NAME_BASE_URL: string = process.env.IMG_PATH_NAME_BASE_URL || "";
 //Const
-const IMG_PATH_NAME_BASE_URL: string =
-  process.env.IMG_PATH_NAME_BASE_URL || "";
-  //Vars
+const RENAME_FILE_ERROR_DETAILS = "ERROR in renameFile() function.";
+//Vars
 let newFilePath: string;
 let msgResponse: string;
 let msgLog: string;
@@ -21,7 +22,7 @@ export const renameFile = async (file: any) => {
     fs.renameSync(file.path, newFilePath);
     return newFilePath;
   } catch (error) {
-    msgResponse = "ERROR in renameFile() function.";
+    msgResponse = RENAME_FILE_ERROR_DETAILS;
     msgLog = msgResponse + `Caused by ${error}`;
     console.log(msgLog);
     return null;
