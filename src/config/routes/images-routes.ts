@@ -4,6 +4,7 @@ const multer = require("multer");
 import "dotenv/config";
 //Controllers
 import { uploadImageController } from "../../controllers/images/upload";
+import { readImageController } from "../../controllers/images/read";
 //Const
 const IMG_PATH_NAME_BASE_URL: string = process.env.IMG_PATH_NAME_BASE_URL || "";
 const upload = multer({ dest: IMG_PATH_NAME_BASE_URL });
@@ -11,4 +12,6 @@ export const imagesRouter = Router();
 
 imagesRouter.post("/", upload.single("img"), uploadImageController);
 
-//Add router
+imagesRouter.get("/list", readImageController);
+
+
