@@ -6,8 +6,7 @@ import { appMiddleware } from "./config/middleware";
 //Environment vars
 const APP_PORT = process.env.APP_FIRST_PORT || process.env.APP_SECOND_PORT;
 //const
-const RUN_SERVER_ERROR_MESSAGE: string =
-  "Error in runServer() function.";
+const RUN_SERVER_ERROR_MESSAGE: string = "Error in runServer() function.";
 //vars
 let msgResponse: string;
 let msgLog: string;
@@ -27,7 +26,7 @@ const runServer = async () => {
     });
   } catch (error) {
     msgResponse = RUN_SERVER_ERROR_MESSAGE;
-    msgLog = msgResponse  + `Caused by ${error}`;
+    msgLog = msgResponse + `Caused by ${error}`;
 
     console.log(msgLog);
   }

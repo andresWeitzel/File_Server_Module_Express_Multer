@@ -7,7 +7,7 @@ import listEndpoints from "express-list-endpoints";
 import "dotenv/config";
 // //Routes
 import { imagesRouter } from "../routes/images-routes";
-imagesRouter
+imagesRouter;
 //Env vars
 const APP_LOCAL_BASE_URL: string = process.env.APP_LOCAL_BASE_URL || "";
 const APP_PORT: string =
@@ -20,7 +20,6 @@ const APP_MIDDLEWARE_ERROR_MESSAGE: string =
 //Vars
 let msgResponse: string;
 let msgLog: string;
-
 
 /**
  * @description initial settings for cors, express, etc (Middleware)
